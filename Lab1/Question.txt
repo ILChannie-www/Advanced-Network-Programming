@@ -1,0 +1,46 @@
+1.
+a. The execution order of threads has nothing to do with the order in which they appear in the main function. 
+    It depends on which thread the computer chooses to execute first. 
+    The results of different computers, or multiple executions of the same computer, may be different.
+
+b. In Java, a class can only inherit one parent class. 
+    If the parent class of Thread is inherited, this class cannot inherit other parent classes. 
+    If the Runnable interface is used, this class can also inherit other parent classes.
+
+c. Not same.
+    runnable: It can be executed, but there are other threads currently executing, and this thread has not obtained the CPU.
+              Waiting for other threads to finish acquiring cpu and executing.
+    running: The thread has obtained the CPU and is executing.
+
+
+2.
+a. interrupt() can only change the interrupt falg, cannot terminate the thread. sleep() method can check the interrupt flag, if it is true
+   an InterruptException will be thrown. If sleep() is removed, no one will check the interrupt flag, so interrupt() is ignored.
+
+b. wait(): java.lang.Object
+           Object  The currently executing thread releases the lock by invoiking wait().
+           Other threads can compete for the lock. wait() can be broken by notify()
+           Must be used in synchronized.
+   join(): java.lang.Thread
+           Thread  The current thread stops executing and waits for the thread calling join() to finish executing.
+           join() cannot be broken.
+
+c. 1. wait for the run() method terminates or use volatile variables
+   2. check interrupt flag
+   3. daemon thread will terminate when parent thread terminates
+
+
+3.
+a. wait(): Let the executing method release the lock, and let other methods acquire the lock and execute it.
+   notify(): Notify the wait() thread that it can resurrection, obtain a lock and execute.
+
+b. All methods of the class can only be executed by one method at any time.
+   Low execution efficiency, only do one thing at a time.
+
+c. Dead lock
+   1. prevention: design code so deadlock is impossible
+   2. avoidance: steer around deadlock with smart scheduling
+   3. detection and recovery: check for deadlock periodically, recover by killing threads and restarting
+   not use synchronized
+   allow pre-emption: allow a thread to interrupt another
+   don't allow a thread to hold multiple locks or force it to get all locks at the same time

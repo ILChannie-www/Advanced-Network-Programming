@@ -1,0 +1,20 @@
+<HTML>
+  <HEAD>
+    <SCRIPT>
+      function validate(){
+        if (document.forms[0].elements[0].value=="") {
+          alert("please enter your email");
+          return false;
+        }
+        return true;
+      }
+    </SCRIPT>
+  </HEAD>
+  <BODY>
+    <FORM method="get" action="someURL"
+                       onSubmit="return validate()">
+      <input type=text name="email">enter your email<br>
+      <input type=submit value="send">
+    </FORM>
+  </BODY>
+</HTML>
